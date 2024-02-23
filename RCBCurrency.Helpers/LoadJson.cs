@@ -1,6 +1,8 @@
-﻿namespace RCBCurrency.JsonDeserialize
+﻿using RCBCurrency.JSON.Interfaces;
+
+namespace RCBCurrency.JsonDeserialize
 {
-    public class LoadJson
+    public class LoadJson : ILoadJson
     {
         private static readonly HttpClient _httpClient = new HttpClient();
 

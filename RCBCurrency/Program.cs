@@ -1,9 +1,7 @@
+using RCBCurrency.JSON.Interfaces;
 using RCBCurrency.JsonDeserialize;
 using RCBCurrency.Services.Implementation;
 using RCBCurrency.Services.Interfaces;
-
-LoadJson loadJson = new LoadJson();
-await loadJson.LoadJsonToFile();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 
 builder.Services.AddScoped<ICurrencyService, CurrencyService>();
+builder.Services.AddScoped<ILoadJson, LoadJson>();
 
 var app = builder.Build();
 

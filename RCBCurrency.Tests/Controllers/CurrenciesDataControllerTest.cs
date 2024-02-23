@@ -1,31 +1,62 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Moq;
 using RCBCurrency.Controllers;
-using RCBCurrency.Services.Implementation;
+using RCBCurrency.Domain.BaseResponse;
+using RCBCurrency.Domain.Enums;
+using RCBCurrency.Domain.ViewModels;
 using RCBCurrency.Services.Interfaces;
 
 namespace RCBCurrency.Tests.Controllers
 {
     [TestFixture]
-    public class CurrenciesDataControllerTest
+    public class CurrenciesDataControllerTests
     {
-        private ICurrencyService _currencyService;
-
+        private Mock<ICurrencyService> _currencyServiceMock;
         private CurrenciesDataController _controller;
 
         [SetUp]
         public void Setup()
         {
-            _currencyService = new CurrencyService();
-            _controller = new CurrenciesDataController(_currencyService);
+            _currencyServiceMock = new Mock<ICurrencyService>();
+            _controller = new CurrenciesDataController(_currencyServiceMock.Object);
         }
 
         [Test]
         public async Task Currencies_ReturnsView_WhenStatusCodeIsSuccess()
         {
-            var result = await _controller.Currencies() as ViewResult;
+            // Arrange
+            var currencies = new List<CurrencyOutputViewModel>();
+            var response = new BaseResponse<IEnumerable<CurrencyOutputViewModel>>
+            {
+                Data = currencies,
+                StatusCode = StatusCode.Success
+            };
+            _currencyServiceMock.Setup(service => service.GetCurrenciesData())
+                .ReturnsAsync(response);
 
-            Assert.IsNotNull(result?.Model);
-            Assert.That(result, Is.InstanceOf<ViewResult>());
+            // Act
+            var result = await _controller.Currencies();
+
+            // Assert
+            Assert.IsInstanceOf<ViewResult>(result);
+        }
+
+        [Test]
+        public async Task Currencies_ReturnsBadRequest_WhenStatusCodeIsNotSuccess()
+        {
+            // Arrange
+            var response = new BaseResponse<IEnumerable<CurrencyOutputViewModel>>
+            {
+                StatusCode = StatusCode.InternalServerError
+            };
+            _currencyServiceMock.Setup(service => service.GetCurrenciesData())
+                .ReturnsAsync(response);
+
+            // Act
+            var result = await _controller.Currencies();
+
+            // Assert
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
         }
     }
 }
