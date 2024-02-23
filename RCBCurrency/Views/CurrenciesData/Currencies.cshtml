@@ -1,0 +1,41 @@
+﻿@using RCBCurrency.Domain.Models
+@model IEnumerable<CurrencyOutputViewModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div id="currenciesId">
+    <table class="table">
+        <tr>
+            <th>
+                CharCode
+            </th>
+            <th>
+                Nominal
+            </th>
+            <th>
+                Name
+            </th>
+            <th>
+                Value
+            </th>
+        </tr>
+        @foreach (var currency in Model)
+        {
+            <tr>
+                <td>
+                    @currency.CharCode
+                </td>
+                <td>
+                    @currency.Nominal
+                </td>
+                <td>
+                    @currency.Name
+                </td>
+                <td>
+                    @currency.Value
+                </td>
+            </tr>
+        }
+    </table>
+</div>
