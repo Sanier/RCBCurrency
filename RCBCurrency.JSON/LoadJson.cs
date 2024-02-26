@@ -1,6 +1,6 @@
 ﻿using RCBCurrency.JSON.Interfaces;
 
-namespace RCBCurrency.JsonDeserialize
+namespace RCBCurrency.JSON
 {
     public class LoadJson : ILoadJson
     {

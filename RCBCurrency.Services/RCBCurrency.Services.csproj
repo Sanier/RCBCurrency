@@ -8,7 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\RCBCurrency.Domain\RCBCurrency.Domain.csproj" />
-    <ProjectReference Include="..\RCBCurrency.Helpers\RCBCurrency.JSON.csproj" />
+    <ProjectReference Include="..\RCBCurrency.JSON\RCBCurrency.JSON.csproj" />
   </ItemGroup>
 
 </Project>

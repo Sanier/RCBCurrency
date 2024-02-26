@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\RCBCurrency.JSON\RCBCurrency.JSON.csproj" />
     <ProjectReference Include="..\RCBCurrency\RCBCurrency.csproj" />
   </ItemGroup>
 

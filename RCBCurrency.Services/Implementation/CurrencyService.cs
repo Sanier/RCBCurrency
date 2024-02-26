@@ -1,11 +1,9 @@
 ﻿using System.Text.Json;
-using System.Threading.Tasks;
 using RCBCurrency.Domain.BaseResponse;
 using RCBCurrency.Domain.Enums;
 using RCBCurrency.Domain.Models;
 using RCBCurrency.Domain.ViewModels;
 using RCBCurrency.JSON.Interfaces;
-using RCBCurrency.JsonDeserialize;
 using RCBCurrency.Services.Interfaces;
 
 namespace RCBCurrency.Services.Implementation

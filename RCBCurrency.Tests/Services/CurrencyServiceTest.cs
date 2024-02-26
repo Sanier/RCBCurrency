@@ -2,7 +2,6 @@
 using RCBCurrency.Domain.Enums;
 using RCBCurrency.JSON.Interfaces;
 using RCBCurrency.Services.Implementation;
-using RCBCurrency.Services.Interfaces;
 
 namespace RCBCurrency.Tests.Services
 {
